@@ -19,12 +19,10 @@ def max_division_by_3(num):
     list_result = []
     for index, elem in enumerate(num_list):
         for i_elem in range(0, 10):
-            num_list[index] = i_elem
-            if sum(num_list) % 3 == 0:
-                list_result.append(num_from_list(num_list))
-                num_list[index] = elem
-            else:
-                num_list[index] = elem
+            list_for_search = num_list.copy()
+            list_for_search[index] = i_elem
+            if sum(list_for_search) % 3 == 0:
+                list_result.append(num_from_list(list_for_search))
     new_num = max(list_result)
     return new_num
 
@@ -34,7 +32,6 @@ def num_from_list(list_of_numbers):
     number = 0
     for i_new_num, elem_new_num in enumerate(list_of_numbers):
         number += elem_new_num * 10 ** i_new_num
-    list_of_numbers.reverse()
     return number
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
