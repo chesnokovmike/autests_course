@@ -18,10 +18,9 @@ def repeats(our_str):
         new_str += sym
         if sym not in sym_dict.keys():
             sym_dict[sym] = 1
-            new_str += '_' + str(sym_dict[sym])
         else:
             sym_dict[sym] += 1
-            new_str += '_' + str(sym_dict[sym])
+        new_str += '_' + str(sym_dict[sym])
     return new_str
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
