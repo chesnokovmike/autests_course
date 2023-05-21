@@ -8,7 +8,7 @@
 # RomanNums('MMMCCLXIII').from_roman() --> 3263
 # RomanNums('CMXCIX').is_palindrome() --> True
 
-# Здесь пишем код
+
 class RomanNums:
 
     def __init__(self, roman_str):

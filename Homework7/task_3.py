@@ -23,7 +23,6 @@
 #   3. ЗАЩИЩЕННЫЙ (protected) атрибут fare - Стоимость проезда
 # У класса должно быть СВОЙСТВО how_long, которое вычисляет время за прохождение маршрута по формуле max_speed/(4*path)
 
-# Здесь пишем код
 class PublicTransport:
     def __init__(self, brand, engine_power, year, color, max_speed):
         """
