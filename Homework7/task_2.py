@@ -23,7 +23,6 @@
 import collections
 
 
-# Здесь пишем код
 class PersonInfo:
     def __init__(self, name, age, *department):
         """
@@ -67,6 +66,7 @@ class PersonInfo:
         new_salary = 1337 * self.age * const
         return new_salary
 
+
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
 
 
@@ -90,7 +90,6 @@ data = [first_person.short_name,
         third_person.new_salary,
         fourth_person.new_salary
         ]
-
 
 test_data = ['Шленский А.', 'Валерьев П.', 'Артуров М.', 'Иванов И.',
 

@@ -11,7 +11,6 @@
 import math
 
 
-# Здесь пишем код
 class Segment:
     def __init__(self, first_point, second_point):
         """
