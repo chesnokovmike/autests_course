@@ -24,15 +24,16 @@ def treatment_sum(our_tuple):
     :param our_tuple: данные, которые надо сложить
     :return: сумма
     """
-    if len(our_tuple) == 2:
-        try:
-            return our_tuple[0] + our_tuple[1]
-        except TypeError:
-            return 'Нельзя сложить эти данные'
-    elif len(our_tuple) < 2:
+
+    try:
+        return our_tuple[0] + our_tuple[1]
+    except TypeError:
+        return 'Нельзя сложить эти данные'
+    except IndexError:
         return 'Недостаточно данных'
-    else:
-        raise Exception('Много данных')
+    finally:
+        if len(our_tuple) > 2:
+            raise Exception('Много данных')
 
 
 # Ниже НИЧЕГО НЕ НАДО ИЗМЕНЯТЬ
