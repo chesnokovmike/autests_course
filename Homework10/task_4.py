@@ -3,4 +3,16 @@
 # 2) Фикстуру для конкретного теста и используйте её не для всех тестов. Например, время выполнения теста.
 
 import pytest
+import time
+
+
+@pytest.mark.usefixtures('write_time_class_fixture')
+class TestTask4:
+
+    def test_1(self):
+        time.sleep(1)
+        pass
+
+    def test_2(self, write_time_test_fixture):
+        time.sleep(1)
 

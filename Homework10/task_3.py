@@ -5,24 +5,17 @@ import pytest
 
 
 def all_division(*arg1):
-
     division = arg1[0]
     for i in arg1[1:]:
         division /= i
     return division
 
 
-# @pytest.mark.smoke
-# def test_positive_integer():
-#     """
-#     Результат - целое число
-#     """
-#     assert all_division(4, 2) == 2
-
-
-@pytest.mark.parametrize('*arg1', [4, 2, 2])
-def test_positive_integer(*arg1):
+@pytest.mark.parametrize('a, b, result',
+                         [pytest.param(2, 2, 1, marks=pytest.mark.smoke),
+                          pytest.param(0, 2, 0, marks=pytest.mark.skip)])
+def test_positive_integer(a, b, result):
     """
     Результат - целое число
     """
-    assert all_division(*arg1) == 2
+    assert all_division(a, b) == result

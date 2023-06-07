@@ -8,4 +8,5 @@ import pytest
 @pytest.mark.id_check(1, 2, 3)
 def test():
     # Здесь пишем код
+    # print(@pytest.mark.id_check)
     pass
