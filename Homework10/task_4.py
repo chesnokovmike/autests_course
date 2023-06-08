@@ -10,9 +10,16 @@ import time
 class TestTask4:
 
     def test_1(self):
+        """
+        Болванка теста
+        """
         time.sleep(1)
         pass
 
     def test_2(self, write_time_test_fixture):
+        """
+        Болванка теста (с фикстурой)
+        :param write_time_test_fixture:
+        """
         time.sleep(1)
 

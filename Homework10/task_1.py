@@ -19,14 +19,19 @@ import string
 
 # Здесь пишем код
 def generate_random_name():
+    """
+    Геренатор двух последовательностей случайных символов, длиной от 1 до 15 символов
+    """
     letters = string.ascii_letters
     first_word = ''.join(random.choice(letters) for i in range(random.randrange(1, 15)))
     second_word = ''.join(random.choice(letters) for i in range(random.randrange(1, 15)))
     while True:
-        yield first_word, second_word
+
         first_word = ''.join(random.choice(letters) for i in range(random.randrange(1, 15)))
         second_word = ''.join(random.choice(letters) for i in range(random.randrange(1, 15)))
+        yield f'{first_word} {second_word}'
     # first_word, second_word
+
 
 gen = generate_random_name()
 print(next(gen))

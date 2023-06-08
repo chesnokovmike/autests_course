@@ -10,6 +10,11 @@ import pytest
 
 
 def all_division(*arg1):
+    """
+    Функция делит число на указанные числа
+    :param arg1: последовательность числе, первое число делимое, остальные - делители
+    :return: результат деления
+    """
     division = arg1[0]
     for i in arg1[1:]:
         division /= i
