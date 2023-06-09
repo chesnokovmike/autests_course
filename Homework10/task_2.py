@@ -47,7 +47,6 @@ def test_zero_division():
     """
     Деление на 0
     """
-    # try:
     assert all_division(1, 0) is None
 
 
