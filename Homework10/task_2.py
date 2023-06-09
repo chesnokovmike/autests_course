@@ -49,8 +49,6 @@ def test_zero_division():
     """
     # try:
     assert all_division(1, 0) is None
-    # except ZeroDivisionError:
-    #     print('На ноль делить нельзя')
 
 
 def test_letter_division():
