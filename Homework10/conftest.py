@@ -30,11 +30,11 @@ def write_time_test_fixture():
         file.write(f'Время выполнения теста {time_delta}')
 
 
-def pytest_runtest_setup(item):  # задание со звездочкой
-    """
-    Метод выводит на печать значения маркера id_check
-    :param item:
-    """
-    for mark in item.iter_markers(name="id_check"):
-        print("id_check аргументы:{}".format(mark.args))
-        sys.stdout.flush()
+# def pytest_runtest_setup(item):  # задание со звездочкой
+#     """
+#     Метод выводит на печать значения маркера id_check
+#     :param item:
+#     """
+#     for mark in item.iter_markers(name="id_check"):
+#         print("id_check аргументы:{}".format(mark.args))
+#         sys.stdout.flush()

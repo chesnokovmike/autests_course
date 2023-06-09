@@ -9,4 +9,5 @@ import pytest
 def test():
     # Здесь пишем код
     # весь код я написал в conftest.py
+    print(test.pytestmark[0])
     pass

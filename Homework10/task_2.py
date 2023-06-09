@@ -15,10 +15,15 @@ def all_division(*arg1):
     :param arg1: последовательность числе, первое число делимое, остальные - делители
     :return: результат деления
     """
-    division = arg1[0]
-    for i in arg1[1:]:
-        division /= i
-    return division
+    try:
+        division = arg1[0]
+        for i in arg1[1:]:
+            division /= i
+        return division
+    except TypeError:
+        print('Нужно передавать число')
+    except ZeroDivisionError:
+        print('На ноль делить нельзя')
 
 
 @pytest.mark.smoke
@@ -42,27 +47,21 @@ def test_zero_division():
     """
     Деление на 0
     """
-    try:
-        all_division(1, 0)
-    except ZeroDivisionError:
-        print('На ноль делить нельзя')
+    # try:
+    assert all_division(1, 0) is None
+    # except ZeroDivisionError:
+    #     print('На ноль делить нельзя')
 
 
 def test_letter_division():
     """
     Делитель - строка
     """
-    try:
-        all_division(5, 'a')
-    except TypeError:
-        print("Нельзя делить на букву")
+    assert all_division(5, 'a') is None
 
 
 def test_letter_division_devider():
     """
     Делимое - строка
     """
-    try:
-        all_division('a', 5)
-    except TypeError:
-        print('Нельзя разделить букву')
+    assert all_division('a', 5) is None
