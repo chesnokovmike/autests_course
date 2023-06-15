@@ -8,32 +8,15 @@
 # Удалить новую папку, проверить, что её нет в списке папок
 
 
-from atf.ui import *
-from atf import log
-from selenium.webdriver.common.by import By
-from time import sleep
+from atf import *
+from pages import *
 
-task_page_utl = 'https://fix-online.sbis.ru/page/tasks-in-work'
-user_login = 'мирчук'
-user_password = 'мирчук123'
+
 new_folder = 'название папки Михиной'
-class Task_on_me(Region):
-    current_folder = Element(By.CSS_SELECTOR, '.controls-Grid__row-cell_selected__first-master')
-    tasks_list = Table(By.CSS_SELECTOR, '.edo3-Browser-view')
-    folder_list = CustomList(By.CSS_SELECTOR, '.controls-Grid__cell_master')
-    new_task_btn = Button(By.CSS_SELECTOR, '[data-qa="sabyPage-addButton"]')
-    add_folder = Button(By.CSS_SELECTOR, '[key="list-render-folderItem"]')
-    folder_name_input = Element(By.CSS_SELECTOR, '.controls-Popup [data-qa="controls-Render__field"]')
-    # TextField(By.CSS_SELECTOR, ".controls-Popup input.controls-Field", 'Поле ввода названия')
-    # create_folder.folder_input.type_in(user_login)
-    save_folder_btn = Button(By.CSS_SELECTOR, '.controls-Popup .controls-BaseButton')
+test_folder = 'для тестирования'
 
-class AuthPage(Region):
-    login = TextField(By.CSS_SELECTOR, '[name="Login"]')
-    password = TextField(By.CSS_SELECTOR, '[name="Password"]')
 
 class TestTask2(TestCaseUI):
-
 
     def test1(self):
         log('Авторизоваться на сайте https://fix-online.sbis.ru/')
@@ -42,20 +25,29 @@ class TestTask2(TestCaseUI):
         auth_page.login.type_in(user_login + Keys.ENTER).should_be(ExactText(user_login))
         auth_page.password.type_in(user_password + Keys.ENTER).should_be(Not(Visible))
         log('Перейти в реестр Задачи на вкладку "В работе"')
-        task_page = Task_on_me(self.driver)
+        task_page = TaskOnMe(self.driver)
         log('Убедиться, что выделена папка "Входящие" и стоит маркер.')
         task_page.current_folder.should_be(ContainsText('Входящие'))
+        task_page.folder_list.item(1).element(task_page.marker).should_be(Visible)
         log('Убедиться, что папка не пустая')
-        task_page.tasks_list.should_not_be(RowsNumber(0))
+        task_page.tasks_list.should_not_be(Empty, wait_time=3)
         log('Перейти в другую папку')
         task_page.folder_list.item(2).click()
         log('Убедиться, что она выделена')
-        task_page.current_folder.should_be(ContainsText('для тестирования'))
-        # доделать "убедиться, что со входящих выделение снято
+        task_page.current_folder.should_be(ContainsText(test_folder))
+        log("Убедиться, что со входящих выделение снято")
+        task_page.folder_list.item(1).element(task_page.marker).should_not_be(Displayed)
         log('Создать новую папку и перейти в нее')
         task_page.new_task_btn.click()
         task_page.add_folder.click()
-        task_page.folder_name_input.send_keys(new_folder)
-        sleep(5)
+        task_page.folder_name_input.type_in(new_folder)
         task_page.save_folder_btn.click()
-        print('чет получилось')
+        task_page.folder_list.item(3).click()
+        log('Убедиться, что она пустая')
+        task_page.tasks_list.should_not_be(RowsNumber(0))
+        log('Удалить папку')
+        task_page.folder_list.item(3).context_click()
+        task_page.folder_menu_list.item(2).click()
+        task_page.confirmation_button.item(1).click()
+        log('Убедиться, что она удалилась')
+        task_page.folder_list.item(3).should_not_be(Present)
